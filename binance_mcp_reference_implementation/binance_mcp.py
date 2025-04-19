@@ -1,6 +1,6 @@
 from typing import Any
 
-import httpx
+import requests
 from mcp.server.fastmcp import FastMCP
 
 mcp = FastMCP("Binance MCP")
@@ -28,7 +28,8 @@ def get_price(symbol: str) -> Any:
     """
     symbol = get_symbol_from_name(symbol)
     url = f"https://api.binance.com/api/v3/ticker/price?symbol={symbol}"
-    response = httpx.get(url)
+    response = requests.get(url)
+    response.raise_for_status()
     return response.json()
 
 
@@ -45,9 +46,11 @@ def get_price_price_change(symbol: str) -> Any:
     """
     symbol = get_symbol_from_name(symbol)
     url = f"https://data-api.binance.vision/api/v3/ticker/24hr?symbol={symbol}"
-    response = httpx.get(url)
+    response = requests.get(url)
+    response.raise_for_status()
     return response.json()
 
 
 if __name__ == "__main__":
+    print("Starting Binance MCP")
     mcp.run(transport="stdio")

@@ -5,18 +5,14 @@ description = "MCP Course projects"
 requires-python = ">=3.10"
 dependencies = [
     # From binance-mcp
-    "httpx>=0.28.1",
-    "mcp[cli]>=1.6.0",
-    "pytest>=8.3.5",
+    "mcp[cli]==1.6.0",
+    "requests==2.32.3", # Also for llm-tool-use
     # From llm-tool-use
-    "google-generativeai",
-    "python-dotenv",
-    "requests",
+    "python-dotenv==1.1.0",
+    "google-generativeai==0.8.5",
     # Jupyter support
-    "ipykernel>=6.29.0",
-    "ipywidgets>=8.1.1",
-    "langchain-core",
-    "langchain-google-genai",
+    "ipykernel>=6.29.5",
+    "ipywidgets>=8.1.6",
 ]
 
 [tool.ruff]
