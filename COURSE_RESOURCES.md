@@ -1,64 +1,23 @@
-what is mcp: create a short summary and send it in an email to zoltan@nordquant.com
+# MCP Bootcamp Course Resources 
 
-create installation instructions for this codebase and send the results in a zapier email to zoltan@nordquant.com
+## General
+* [Our Github Repository](https://github.com/nordquant/mcp-course)
+* [Slides](https://docs.google.com/presentation/d/1d3PYBUqYntgh6YHOPk4Va61B-b0ok1pRZWoJzA9Venc/edit?usp=sharing)
+* [The Official MCP Homepage](https://modelcontextprotocol.io/)
 
-https://aistudio.google.com/
+## Environment Setup
+ * [Visual Studio Code](https://code.visualstudio.com/)
+ * [Installing uv](https://docs.astral.sh/uv/getting-started/installation/)
 
-Before we begin, ensure you have Python 3.10+ installed. Then, we set up our environment and start with installing the uv package manager. For Mac or Linux: 
+## Claude and Cursor
+ * [Claude Desktop Download](https://claude.ai/download)
+ * [Cursor Download](https://www.cursor.com/)
 
-```
-@mcp.tool()
-def run_command(command: str) -> str:
-    """
-    Execute a shell command and return its output
+## Finding and Integrating Third-Party MCPs
+ * [Zapier](https://zapier.com)
+ * [Zapier MCP](https://zapier.com/mcp)
 
-    Args:
-        command (str): The shell command to execute
-
-    Returns:
-        str: The command's output
-    """
-    result = subprocess.run(command, shell=True, capture_output=True, text=True)
-    return result.stdout
-```
-
-```
-@app.list_resources()
-async def list_resources() -> list[types.Resource]:
-    return [
-        types.Resource(
-            uri="file:///opt/resources.md",
-            name="Course Resources",
-            mimeType="text/markdown"
-        )
-    ]
-
-@app.read_resource()
-async def read_resource(uri: AnyUrl) -> str:
-    if str(uri) == "file:///opt/resources.md":
-        with open("/opt/resources.md", "r") as file:
-            return file.read()
-        
-    raise ValueError("Resource not found")
-```
-
-```
-PROMPTS = {
-  "code-review": types.Prompt(
-    name="code-review",
-    description="""Review code for best practices, potential issues, and improvements.
-                   Focus on the core logic. Keep your answer simple. Use bulletpoints. 
-                   Keep in mind that I am an experienced developer""", 
-    arguments=[
-        types.PromptArgument(
-            name="code",
-            description="Code to review",
-            required=True
-        )
-    ]
-}
-```
-
+### Integrating Zapier's MCP (code)
 ```
 {
   "mcpServers": {
@@ -66,13 +25,44 @@ PROMPTS = {
       "command": "npx",
       "args": [
         "mcp-remote",
-        "https://actions.zapier.com/mcp/sk-ak-KihJkw2QtWEIrhcQpSh0FApL7K/sse"
+        "https://actions.zapier.com/mcp/<<YOUR-TOKEN-COMES-HERE>>/sse"
       ]
     },
   }
 }
 ```
 
+### Stopping Zaper's MCP server
+You only need to use this tool when you have issues with Zapier opening Browser Windows:
+
+1. Remove the Zapier MCP from Claude / Cursor (by editing the JSON config)
+2. Execute the following command:
+   - Mac/Linux:
+     `ps -ef | grep -i zapier | grep -v grep | awk '{print $2}' | xargs kill`
+   - Windows:
+     `Get-Process | Where-Object { $_.Name -like '*zapier*' } | ForEach-Object { $_.Kill() }`
+
+
+## Third-Party MCP hubs
+* [Projects selected by Anthropic](https://github.com/modelcontextprotocol/servers)
+* [Smithery](https://smithery.ai/)
+* [Cursor Directory](https://cursor.directory/)
+
+## Implementing Our Own MCP Server
+* [Official Python MCP Docs](https://github.com/modelcontextprotocol/python-sdk)
+
+### Getting The Python Interpreter's path
+* On a Max/Linux: `which python`
+* On Window: `(Get-Command python).Path | -replace '\\', '/'`
+
+### Launching the MCP inspector
+```
+npx @modelcontextprotocol/inspector <<PATH OF PYTHON>> <<PATH OF YOUR binance_mcp.py>>
+```
+
+### Adding Binance MCP to Claude / Cursor
+This is just an example. Ensure that you replace the Python path and your `binance_mcp.py`'s path to the correct value:
+
 ```
 {
   "mcpServers": {
@@ -80,35 +70,7 @@ PROMPTS = {
       "command": "npx",
       "args": [
         "mcp-remote",
-        "https://actions.zapier.com/mcp/sk-ak-nQ9qz5Qp2klSz2v1xAmx9iXwm2/sse"
-      ]
-    },
-    "binance-mcp": {
-      "command": "/Users/zoltanctoth/src/mcp-course/.venv/bin/python",
-      "args": [
-        "/Users/zoltanctoth/src/mcp-course/binance_mcp/binance_mcp.py"
-      ]
-    }
-  }
-}
-```
-
-```
-npx @modelcontextprotocol/inspector /Users/zoltanctoth/src/mcp-course/.venv/bin/python /Users/zoltanctoth/src/mcp-course/binance_mcp/binance_mcp.py
-```
-
-```
-(Get-Command python).Path
-```
-
-```
-{
-  "mcpServers": {
-    "zapier-mcp": {
-      "command": "npx",
-      "args": [
-        "mcp-remote",
-        "https://actions.zapier.com/mcp/sk-ak-nQ9qz5Qp2klSz2v1xAmx9iXwm2/sse"
+        "https://actions.zapier.com/mcp/<<YOUR TOKEN HERE>>/sse"
       ]
     },
     "binance-mcp": {
@@ -120,8 +82,5 @@ npx @modelcontextprotocol/inspector /Users/zoltanctoth/src/mcp-course/.venv/bin/
   }
 }
 ```
-
-* https://github.com/modelcontextprotocol/servers/
-* https://smithery.ai/
-* 
-
+## The MCP Roadmap
+* [The official MCP Roadmap from Anthropic](https://modelcontextprotocol.io/development/roadmap)
