@@ -28,7 +28,7 @@ def get_price(symbol: str) -> Any:
     """
     symbol = get_symbol_from_name(symbol)
     # If you are in the US use api.binance.us:
-    # url = f"https://api.binance.com/api/v3/ticker/price?symbol={symbol}"
+    # url = f"https://api.binance.us/api/v3/ticker/price?symbol={symbol}"
     # If you are not in the US, use api.binance.com:
     url = f"https://api.binance.com/api/v3/ticker/price?symbol={symbol}"
     response = requests.get(url)
