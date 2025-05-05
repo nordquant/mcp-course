@@ -66,12 +66,12 @@ This is just an example. Ensure that you replace the Python path and your `binan
 ```
 {
   "mcpServers": {
-    "zapier-mcp": {
-      "command": "npx",
-      "args": [
-        "mcp-remote",
-        "https://actions.zapier.com/mcp/<<YOUR TOKEN HERE>>/sse"
-      ]
+   "zapier-mcp": {
+        "command": "npx",
+        "args": [
+            "mcp-remote",
+            "https://mcp.zapier.com/api/mcp/s/<<YOUR TOKEN HERE>>/sse"
+        ]
     },
     "binance-mcp": {
       "command": "C:/Users/zoltanctoth/Desktop/mcp-course/.venv/Scripts/python.exe",
