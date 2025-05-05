@@ -63,6 +63,7 @@ npx @modelcontextprotocol/inspector <<PATH OF PYTHON>> <<PATH OF YOUR binance_mc
 ### Adding Binance MCP to Claude / Cursor
 This is just an example. Ensure that you replace the Python path and your `binance_mcp.py`'s path to the correct value:
 
+#### Windows example
 ```
 {
   "mcpServers": {
@@ -82,5 +83,27 @@ This is just an example. Ensure that you replace the Python path and your `binan
   }
 }
 ```
+
+#### Mac / Linux example
+```
+{
+  "mcpServers": {
+   "zapier-mcp": {
+        "command": "npx",
+        "args": [
+            "mcp-remote",
+            "https://mcp.zapier.com/api/mcp/s/<<YOUR TOKEN HERE>>/sse"
+        ]
+    },
+    "binance-mcp": {
+      "command": "/Users/zoltanctoth/src/mcp-course/.venv/bin/python",
+      "args": [
+        "/Users/zoltanctoth/src/mcp-course/binance_mcp/binance_mcp.py"
+      ]
+    }
+  }
+}
+```
+
 ## The MCP Roadmap
 * [The official MCP Roadmap from Anthropic](https://modelcontextprotocol.io/development/roadmap)
