@@ -25,7 +25,7 @@
       "command": "npx",
       "args": [
         "mcp-remote",
-        "https://actions.zapier.com/mcp/<<YOUR-TOKEN-COMES-HERE>>/sse"
+        "https://mcp.zapier.com/api/mcp/s/<<YOUR TOKEN HERE>>/sse"
       ]
     },
   }
