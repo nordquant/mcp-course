@@ -2,7 +2,7 @@
 name = "mcp-course"
 version = "0.1.0"
 description = "MCP Course projects"
-requires-python = ">=3.10"
+requires-python = ">=3.11, <3.14"
 dependencies = [
     # From binance-mcp
     "mcp[cli]==1.9.2",
