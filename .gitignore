@@ -1,4 +1,6 @@
 .env
+.envrc
+.venv/
 activity.log
 __pycache__
 /.cursor/*
@@ -12,3 +14,6 @@ typescript_mcp/node_modules/
 /dev
 /.archive
 !.github/
+
+# others
+_old/
