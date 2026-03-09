@@ -28,6 +28,7 @@ dependencies = [
 ci = [
     "pytest",
     "pytest-dotenv",
+    "nbconvert",
 ]
 
 [tool.ruff]

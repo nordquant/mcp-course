@@ -12,9 +12,14 @@ REFERENCE_SCRIPTS = [
     ("binance_mcp_reference_implementation/binance_mcp_w_resource.py", []),
     ("binance_mcp/binance_mcp.py", []),
     ("langgraph/price_graph.py", []),
+    (".github/run_price_graph_gemini.py", []),
     ("ref_openai_mcp/function_calling.py", ["openai"]),
     ("ref_openai_mcp/mcp_with_openai_agent.py", ["openai"]),
     ("ref_openai_mcp/mcp_with_responses_api.py", ["openai"]),
+]
+
+NOTEBOOKS = [
+    "tool_calling.ipynb",
 ]
 
 # Load .env only for missing env vars
@@ -50,6 +55,23 @@ def install_dependency_groups(groups):
 def test_reference_script(script_path, groups):
     install_dependency_groups(groups)
     assert run_script(script_path) == 0
+
+
+def run_notebook(notebook_path):
+    result = subprocess.run(
+        [sys.executable, "-m", "jupyter", "execute", notebook_path],
+        capture_output=True,
+        text=True,
+    )
+    print(f"\n--- Output of {notebook_path} ---\n{result.stdout}")
+    if result.returncode != 0:
+        print(f"--- Error output of {notebook_path} ---\n{result.stderr}")
+    return result.returncode
+
+
+@pytest.mark.parametrize("notebook_path", NOTEBOOKS)
+def test_notebook(notebook_path):
+    assert run_notebook(notebook_path) == 0
 
 
 if __name__ == "__main__":

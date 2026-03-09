@@ -12,3 +12,5 @@ typescript_mcp/node_modules/
 /dev
 /.archive
 !.github/
+
+.claude/

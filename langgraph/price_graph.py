@@ -1,4 +1,5 @@
 import asyncio
+import os
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -13,8 +14,13 @@ load_dotenv()
 model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
 # For Google Gemini, use:
-# from langchain_google_genai import ChatGoogleGenerativeAI
-# model = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0)
+from langchain_google_genai import ChatGoogleGenerativeAI
+
+# model = ChatGoogleGenerativeAI(
+#     model="gemini-2.5-flash",
+#     temperature=0,
+#     google_api_key=os.environ["GEMINI_API_KEY"],
+# )
 
 ROOT_FOLDER = Path(__file__).parent.parent.absolute()
 MCP_PATH = str(ROOT_FOLDER / "binance_mcp_reference_implementation" / "binance_mcp.py")
