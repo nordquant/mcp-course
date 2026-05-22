@@ -11,7 +11,8 @@ dependencies = [
     "requests==2.32.3", # Also for llm-tool-use
     # From llm-tool-use
     "python-dotenv==1.1.0",
-    "google-generativeai==0.8.5",
+    # google-generativeai is deprecated; replaced by the unified google-genai SDK
+    "google-genai==2.4.0",
     # Jupyter support
     "ipykernel>=6.29.5",
     "ipywidgets>=8.1.6",
