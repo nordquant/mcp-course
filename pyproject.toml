@@ -30,6 +30,7 @@ ci = [
     "pytest",
     "pytest-dotenv",
     "nbconvert",
+    "nbclient",
 ]
 
 [tool.ruff]
