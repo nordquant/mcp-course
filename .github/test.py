@@ -59,7 +59,11 @@ def test_reference_script(script_path, groups):
 
 def run_notebook(notebook_path):
     result = subprocess.run(
-        [sys.executable, "-m", "jupyter", "execute", notebook_path],
+        [
+            sys.executable, "-m", "nbconvert",
+            "--to", "notebook", "--execute", notebook_path,
+            "--output", "/tmp/_executed.ipynb",
+        ],
         capture_output=True,
         text=True,
     )
