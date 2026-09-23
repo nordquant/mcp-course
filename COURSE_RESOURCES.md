@@ -1,7 +1,7 @@
 # MCP Bootcamp Course Resources 
 
 ## General
-* [Our Github Repository](https://github.com/nordquant/mcp-course)
+* [Our Github Repository](https://github.com/zoltanctoth/mcp-course)
 * [Slides](https://docs.google.com/presentation/d/1d3PYBUqYntgh6YHOPk4Va61B-b0ok1pRZWoJzA9Venc/edit?usp=sharing)
 * [The Official MCP Homepage](https://modelcontextprotocol.io/)
 
@@ -132,7 +132,7 @@ Access your MCP from the repository:
 }
 
 ## Deploying MCPs to Render.com with SSE/Streamable HTTP
- 1) Clone this repository: https://github.com/nordquant/binance-mcp
+ 1) Clone this repository: https://github.com/zoltanctoth/binance-mcp
  2) Step into the cloned repository's folder
  2) Create a virtualenv `virtualenv venv --python=python3.12`
  3) Activate the virtualenv

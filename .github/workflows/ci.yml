@@ -9,7 +9,7 @@ on:
 
 jobs:
   test:
-    if: (github.repository == 'zoltanctoth/mcp-course' || github.repository == 'nordquant/mcp-course')
+    if: github.repository == 'zoltanctoth/mcp-course'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
